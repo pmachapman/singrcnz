@@ -335,7 +335,7 @@ class output:
         out += '<table class="songs">'
         num = 1
         for s in songs:
-            print s.name
+            print(s.name)
             try: num = int(s.num)
             except ValueError: num = 0
             if num%10 == 0 and num != 0: out += '<tr><td style="border:none"><br /></td></tr>\n'
@@ -361,7 +361,7 @@ class output:
         for s in songs:
             if s.num == prev:       # skip some hymns that are doubled because the second one in the repository is a double-page version
                 continue
-            print s.name
+            print(s.name)
             if num%10 == 0 and num != 0: out += '<tr><td style="border:none"><br /></td></tr>\n'
             num = num+1
             out += cls.listing(s, Hymndir)
@@ -441,6 +441,6 @@ if __name__ == '__main__':
         Cd = True
 
     main()
-    print
-    print >>sys.stderr, '\n'.join(Warnings)
+    print()
+    print('\n'.join(Warnings), file=sys.stderr)
 

@@ -139,8 +139,8 @@ def createHtml(sib, tempPath=''):
     sib = sib.replace(';', '%3b')           # make filenames with semicolons work in Firefox
     data = html % (sib, sib)
 
-    f = file(htm, 'w')
-    print >>f, data
+    f = open(htm, 'w')
+    print(data, file=f)
     f.close()
     return htm
 
@@ -149,9 +149,9 @@ def openHtml(htm):
 
 def main():
     if len(sys.argv)<2 or '-h' in sys.argv or '--help' in sys.argv or '/?' in sys.argv:
-        print 'Usage: scorcher [-q] musicfile1.sib [musicfile2.sib] [*.sib]'
-        print 'Generate .htm file to match sibelius .sib file'
-        print "  -q means quiet: don't open the .htm files (creating them in the system's temp folder)"
+        print('Usage: scorcher [-q] musicfile1.sib [musicfile2.sib] [*.sib]')
+        print('Generate .htm file to match sibelius .sib file')
+        print("  -q means quiet: don't open the .htm files (creating them in the system's temp folder)")
         sys.exit(1)
 
     quiet = '-q' in sys.argv
@@ -164,10 +164,10 @@ def main():
 
     for i in files:
         if not quiet:
-            print i,
+            print(i,)
             openHtml(createHtml(i, tempPath))
         else:
-            print i, '->', createHtml(i)
+            print(i, '->', createHtml(i))
 
 if __name__ == '__main__':
     main()

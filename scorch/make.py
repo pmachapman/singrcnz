@@ -24,8 +24,8 @@ setup(console=['scorcher.py', 'wikilist.py', 'setup.py'], \
 
 zipName = '%s%sr%s' % (packageName, version, os.popen('svnversion').read().strip().replace(':', '-'))
 
-print
-print 'Creating zip file %s.zip' % zipName
+print()
+print('Creating zip file %s.zip' % zipName)
 
 zip = zipfile.ZipFile(zipName+'.zip', 'w')
 for directory in os.walk(packageName):
@@ -34,6 +34,6 @@ for directory in os.walk(packageName):
         path = prefix+os.sep+filename
         zip.write(path, path[len(packageName)+1:])
 
-print 'Removing the build directories'
+print('Removing the build directories')
 shutil.rmtree(packageName)
 shutil.rmtree('build')

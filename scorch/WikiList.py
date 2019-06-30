@@ -9,19 +9,19 @@ def link(song):
     return 'http://hymnal.ws/public/Songs/%s.htm' % link
 
 def listPsalms(dest, filename):
-    print >>sys.stderr, 'Working on "%s"' % filename
+    print('Working on "%s"' % filename, file=sys.stderr)
     song = os.path.basename(filename).replace('.htm', '')
     song = song.replace('_', ' ')
     if song.lower().startswith('psalm'):
         num = song[5:].split()[0]
         num = str(int(num[0:3])) + num[3:]
         name = ' '.join(song.split()[1:])
-        print >>dest, '%s: %s' % (num, name),
+        print('%s: %s' % (num, name), file=dest)
     else:
-        print >>dest, song,
-    print >>dest, '- [%s view]' % link(song)
-    print >>dest, ' * -'
-    print >>dest
+        print(song, file=dest)
+    print('- [%s view]' % link(song), file=dest)
+    print(' * -', file=dest)
+    print(file=dest)
 
 def main():
     argv = sys.argv
@@ -30,8 +30,8 @@ def main():
         argv += sys.stdin.read().split()
 
     if not argv[1:]:
-        print 'Usage: WikiList.py <list-htm-files>'
-        print 'Wildcards are allowed'
+        print('Usage: WikiList.py <list-htm-files>')
+        print('Wildcards are allowed')
         sys.exit(1)
 
     dest = sys.stdout

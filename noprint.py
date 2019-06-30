@@ -9,13 +9,13 @@ def alter_pdf(infile):
     """ Make given pdf infile non-printable """
     outfile = infile.replace('.pdf', '.np.pdf')
     command = '''pdftk "%s" output "%s" owner_pw "hymnal" allow ModifyContents allow CopyContents allow ScreenReaders allow ModifyAnnotations''' % (infile, outfile)
-    print command
+    print(command)
     os.system(command)
 
     command = 'svn add "%s"' % outfile
     if not svnadd:
-        print '#',
-    print command
+        print('#',)
+    print(command)
     if svnadd:
         os.system(command)
 
@@ -29,7 +29,7 @@ def find_files(numbers, path):
         if len(filenames) > 1:
             raise Exception('''More than one filename found with pattern "{}": {}'''.format(pattern, filenames))
         if not filenames:
-            raise Exception('''No file found to match pattern "{}"'''.format(pattern, filenames))
+            raise Exception('''No file found to match pattern "{}"'''.format(pattern))
         alter_pdf(filenames[0])
 
 def main():
